@@ -1,3 +1,5 @@
+import random
+
 # create baard
 board = [[1,2,3], [4,5,6], [7,8,9]]
 player_marker = ''
@@ -65,4 +67,29 @@ def place_marker(board, marker, position):
 place_marker(board, 'X', 6)
 print()
 display_board(board)
+
+'''
+Step 4: Write a function that takes in a board and a mark (X or O) and then checks to see if that mark has won.
+'''
+def win_check(board,mark):
+    '''
+     winning sequences -
+     1,2,3 / 4,5,6 / 7,8,9 / 1,5,9 / 3,5,7 / 1,4,7 / 2,5,8 / 3,6,9
+    :param board:
+    :param mark:
+    :return:
+    '''
+    if(board[0][0] and board[0][1] and board[0][2] == mark) or (board[1][0] and board[1][1] and board[1][2] == mark) or (board[2][0] and board[2][1] and board[2][2] == mark) or (board[0][1] and board[1][1] and board[2][2] == mark) or (board[0][2] and board[0][1] and board[2][0] == mark) or (board[0][0] and board[1][0] and board[2][0] == mark) or (board[0][1] and board[1][1] and board[2][1] == mark) or (board[0][2] and board[1][2] and board[2][2] == mark):
+        return True
+    else:
+        return False
+
+
+'''
+Step 5: Write a function that uses the random module to randomly decide which player goes first. You may want to lookup random.randint() Return a string of which player went first.
+'''
+
+def choose_first():
+    first = bool(random.getrandbits(1))
+    return 'X' if first else 'O'
 
